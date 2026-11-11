@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Alquiler de bicicletas urbanas, de montaña y de ruta en Medellín.">
+  <meta name="theme-color" content="#245c42">
+  <title>Rueda Libre | Alquiler de bicicletas en Medellín</title>
+  <link rel="stylesheet" href="./css/tailwind.css">
+</head>
+
+<body class="site-body">
+
+  <input class="theme-switch" type="checkbox" id="theme-toggle" aria-label="Activar o desactivar modo nocturno">
+
+  <header id="inicio" class="site-header">
+    <div class="header-inner">
+      <div class="brand">
+        <a class="brand-name" href="#inicio">Rueda Libre</a>
+        <p>Alquiler de bicicletas en Medellín</p>
+      </div>
+
+      <label class="theme-button" for="theme-toggle">
+        <span class="theme-day" aria-hidden="true">☀️</span>
+        <span class="theme-night" aria-hidden="true">🌙</span>
+        <span class="theme-day">Modo día</span>
+        <span class="theme-night">Modo noche</span>
+      </label>
+    </div>
+  </header>
+
+  <nav class="main-nav" aria-label="Navegación principal">
+    <details class="mobile-menu">
+      <summary class="mobile-menu-button">☰ Menú de navegación</summary>
+      <ul class="mobile-menu-list">
+        <li><a href="#inicio">Inicio</a></li>
+        <li><a href="#quienes-somos">Quiénes somos</a></li>
+        <li><a href="#catalogo">Bicicletas</a></li>
+        <li><a href="#tarifas">Tarifas</a></li>
+        <li><a href="#reserva">Reservar</a></li>
+      </ul>
+    </details>
+
+    <ul class="desktop-menu">
+      <li><a href="#inicio">Inicio</a></li>
+      <li><a href="#quienes-somos">Quiénes somos</a></li>
+      <li><a href="#catalogo">Bicicletas</a></li>
+      <li><a href="#tarifas">Tarifas</a></li>
+      <li><a href="#reserva">Reservar</a></li>
+    </ul>
+  </nav>
+
+  <main class="page-container">
+
+    <section id="quienes-somos" class="content-section about-section">
+      <div class="section-heading">
+        <span class="eyebrow">Muévete a tu ritmo</span>
+        <h1>Descubre Medellín sobre dos ruedas</h1>
+      </div>
+
+      <p>
+        En <strong>Rueda Libre</strong> somos apasionados por la movilidad sostenible en Medellín.
+        Ofrecemos el servicio de alquiler de bicicletas urbanas, de montaña y de ruta para que
+        locales y turistas exploren la ciudad a su propio ritmo, de forma ecológica y divertida.
+        Contamos con diferentes modelos, adaptados a necesidades recreativas, deportivas y de aventura.
+      </p>
+
+      <p class="schedule-note">
+        <strong>Horarios:</strong> lunes a viernes de 7:00 a. m. a 10:00 p. m.;
+        sábados, domingos y festivos hasta las 9:30 p. m. Consulta la disponibilidad al reservar.
+      </p>
+    </section>
+
+    <section id="catalogo" class="content-section catalog-section">
+
+      <div class="section-heading">
+        <span class="eyebrow">Encuentra tu compañera de ruta</span>
+        <h2>Nuestro catálogo de bicicletas</h2>
+        <p>Explora los nueve modelos disponibles y encuentra el ideal para tu recorrido.</p>
+      </div>
+
+      <div class="carousel-shell">
+
+        <div class="bike-carousel" aria-label="Carrusel de nueve bicicletas">
+
+          <article class="bike-card" id="bicicleta-1">
+            <div class="bike-image">
+              <img src="./img/Bicilceta%201.png" alt="Bicicleta de montaña GW color negro" loading="lazy">
+            </div>
+            <div class="bike-card-content">
+              <span class="bike-number">Modelo 01</span>
+              <h3>MTB GW Negra</h3>
+              <p>Bicicleta de montaña con suspensión delantera, ideal para terreno variado y ciclovías exigentes.</p>
+            </div>
+          </article>
+
+          <article class="bike-card" id="bicicleta-2">
+            <div class="bike-image">
+              <img src="./img/Bicicleta%202.png" alt="Bicicleta de montaña GW color beige" loading="lazy">
+            </div>
+            <div class="bike-card-content">
+              <span class="bike-number">Modelo 02</span>
+              <h3>MTB GW beige</h3>
+              <p>Modelo todoterreno cómodo y elegante para pasear por la ciudad con total suavidad.</p>
+            </div>
+          </article>
+
+          <article class="bike-card" id="bicicleta-3">
+            <div class="bike-image">
+              <img src="./img/Bicicleta%203.png" alt="Bicicleta de ruta de color rojo y blanco" loading="lazy">
+            </div>
+            <div class="bike-card-content">
+              <span class="bike-number">Modelo 03</span>
+              <h3>Bicicleta de ruta</h3>
+              <p>Diseñada para velocidad y alto rendimiento sobre el asfalto. Perfecta para deportistas.</p>
+            </div>
+          </article>
+
+          <article class="bike-card" id="bicicleta-4">
+            <div class="bike-image">
+              <img src="./img/Bicicleta%204.png" alt="Bicicleta de montaña plateada" loading="lazy">
+            </div>
+            <div class="bike-card-content">
+              <span class="bike-number">Modelo 04</span>
+              <h3>MTB plateada</h3>
+              <p>Bicicleta de montaña con tracción adicional, ideal para caminos empinados.</p>
+            </div>
+          </article>
+
+          <article class="bike-card" id="bicicleta-5">
+            <div class="bike-image">
+              <img src="./img/Bicicleta%205.png" alt="Bicicleta de montaña con tonos verdes" loading="lazy">
+            </div>
+            <div class="bike-card-content">
+              <span class="bike-number">Modelo 05</span>
+              <h3>MTB tonos verdes</h3>
+              <p>Modelo todoterreno cómodo para recorrer caminos y montañas con agilidad.</p>
+            </div>
+          </article>
+
+          <article class="bike-card" id="bicicleta-6">
+            <div class="bike-image">
+              <img src="./img/Bicicleta%206.png" alt="Bicicleta de color rojo y blanco" loading="lazy">
+            </div>
+            <div class="bike-card-content">
+              <span class="bike-number">Modelo 06</span>
+              <h3>Bicicleta roja y blanca</h3>
+              <p>Diseñada para velocidad. Una opción para deportistas y amantes de la adrenalina.</p>
+            </div>
+          </article>
+
+          <article class="bike-card" id="bicicleta-7">
+            <div class="bike-image">
+              <img src="./img/Bicicleta%207.png" alt="Bicicleta stunt simple" loading="lazy">
+            </div>
+            <div class="bike-card-content">
+              <span class="bike-number">Modelo 07</span>
+              <h3>Stunt simple</h3>
+              <p>Bicicleta para maniobras, ideal para quienes disfrutan hacer acrobacias.</p>
+            </div>
+          </article>
+
+          <article class="bike-card" id="bicicleta-8">
+            <div class="bike-image">
+              <img src="./img/Bicicleta%208.png" alt="Bicicleta de stunt avanzado" loading="lazy">
+            </div>
+            <div class="bike-card-content">
+              <span class="bike-number">Modelo 08</span>
+              <h3>Stunt avanzado</h3>
+              <p>Modelo para acrobacias, recomendado para quienes ya dominan esta disciplina.</p>
+            </div>
+          </article>
+
+          <article class="bike-card" id="bicicleta-9">
+            <div class="bike-image">
+              <img src="./img/Bicicleta%209.png" alt="Bicicleta de montaña negra" loading="lazy">
+            </div>
+            <div class="bike-card-content">
+              <span class="bike-number">Modelo 09</span>
+              <h3>MTB negra todoterreno</h3>
+              <p>Diseñada para terrenos exigentes, con tracción adicional y ruedas resistentes.</p>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <section id="tarifas" class="content-section">
+
+      <div class="section-heading">
+        <span class="eyebrow">Planes para cada recorrido</span>
+        <h2>Nuestras tarifas</h2>
+        <p>Encuentra el plan ideal para disfrutar Medellín sobre dos ruedas.</p>
+      </div>
+
+      <div class="pricing-group">
+        <div class="pricing-heading">
+          <h3>☀️ Alquiler diurno</h3>
+          <p>Disfruta de la ciudad y sus paisajes durante el día.</p>
+        </div>
+
+        <div class="pricing-grid">
+          <article class="price-card">
+            <h4>Medio día</h4>
+            <p class="duration">4 horas de alquiler</p>
+            <p class="price">$30.000 <span>COP</span></p>
+            <p class="extra-hour">Hora adicional: <strong>$10.000 COP</strong></p>
+            <ul>
+              <li>Uso de bicicleta durante 4 horas.</li>
+              <li>Horario diurno acordado al reservar.</li>
+              <li>Sujeto a disponibilidad.</li>
+            </ul>
+          </article>
+
+          <article class="price-card">
+            <h4>Día completo</h4>
+            <p class="duration">8 horas de alquiler</p>
+            <p class="price">$50.000 <span>COP</span></p>
+            <p class="extra-hour">Hora adicional: <strong>$10.000 COP</strong></p>
+            <ul>
+              <li>Uso de bicicleta durante 8 horas.</li>
+              <li>Horario diurno acordado al reservar.</li>
+              <li>Sujeto a disponibilidad.</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+
+      <div class="pricing-group">
+        <div class="pricing-heading">
+          <h3>🌙 Alquiler nocturno</h3>
+          <p>Explora Medellín y disfruta de sus recorridos nocturnos.</p>
+        </div>
+
+        <div class="pricing-grid">
+          <article class="price-card night-price">
+            <h4>Noche corta</h4>
+            <p class="duration">4 horas de alquiler</p>
+            <p class="price">$35.000 <span>Tarifa</span></p>
+            <p class="extra-hour">Hora adicional: <strong>$15.000</strong></p>
+            <ul>
+              <li>Uso de bicicleta durante 4 horas.</li>
+              <li>Horario nocturno sujeto a coordinación.</li>
+              <li>Reserva previa y disponibilidad.</li>
+            </ul>
+          </article>
+
+          <article class="price-card night-price">
+            <h4>Noche extendida</h4>
+            <p class="duration">8 horas de alquiler</p>
+            <p class="price">$55.000 <span>Tarifa</span></p>
+            <p class="extra-hour">Hora adicional: <strong>$15.000</strong></p>
+            <ul>
+              <li>Uso de bicicleta durante 8 horas.</li>
+              <li>Horario nocturno sujeto a coordinación.</li>
+              <li>Reserva previa y disponibilidad.</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+
+      <p class="pricing-note">
+        Los alquileres están sujetos a disponibilidad. Consulta las condiciones y horarios al realizar tu reserva.
+      </p>
+    </section>
+
+    <section id="reserva" class="content-section reservation-section">
+
+      <div class="section-heading">
+        <span class="eyebrow">Prepara tu próxima salida</span>
+        <h2>Reserva tu bicicleta</h2>
+        <p>Completa tus datos y nos pondremos en contacto contigo para confirmar tu alquiler.</p>
+      </div>
+
+      <details class="reservation-disclosure">
+        <summary class="primary-button">
+          Realizar reserva <span aria-hidden="true">＋</span>
+        </summary>
+
+        <form class="reservation-form" action="#" method="get">
+          <div class="form-grid">
+
+            <div class="form-field">
+              <label for="nombre">Nombre completo</label>
+              <input type="text" id="nombre" name="nombre" placeholder="Tu nombre completo" autocomplete="name"
+                required>
+            </div>
+
+            <div class="form-field">
+              <label for="correo">Correo electrónico</label>
+              <input type="email" id="correo" name="correo" placeholder="ejemplo@correo.com" autocomplete="email"
+                required>
+            </div>
+
+            <div class="form-field">
+              <label for="documento">Número de documento</label>
+              <input type="text" id="documento" name="documento" placeholder="Ingresa tu documento" required>
+            </div>
+
+            <div class="form-field">
+              <label for="celular">Número de celular</label>
+              <input type="tel" id="celular" name="celular" placeholder="Ejemplo: 3001234567" autocomplete="tel"
+                required>
+            </div>
+
+            <div class="form-field">
+              <label for="bici-select">Selecciona el modelo</label>
+              <select id="bici-select" name="bici" required>
+                <option value="" selected disabled>Selecciona una bicicleta</option>
+                <option value="mtb-negra">MTB GW Negra</option>
+                <option value="mtb-beige">MTB GW beige</option>
+                <option value="ruta">Bicicleta de ruta</option>
+                <option value="mtb-plateada">MTB plateada</option>
+                <option value="mtb-verde">MTB tonos verdes</option>
+                <option value="roja-blanca">Bicicleta roja y blanca</option>
+                <option value="stunt-simple">Stunt simple</option>
+                <option value="stunt-avanzado">Stunt avanzado</option>
+                <option value="mtb-negra-todoterreno">MTB negra todoterreno</option>
+              </select>
+            </div>
+
+            <div class="form-field">
+              <label for="fecha">Fecha de alquiler</label>
+              <input type="date" id="fecha" name="fecha" required>
+            </div>
+
+          </div>
+
+          <button class="primary-button submit-button" type="submit">Enviar reserva</button>
+        </form>
+      </details>
+
+      <p class="form-disclaimer">
+        Nota: este formulario todavía no envía la reserva al negocio; necesita conectarse a un servicio o backend para
+        recibir los datos.
+      </p>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <p>© 2026 Rueda Libre | Medellín, Colombia</p>
+  </footer>
+
+</body>
+
+</html>
