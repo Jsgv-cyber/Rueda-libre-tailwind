@@ -8,6 +8,7 @@
   <meta name="theme-color" content="#245c42">
   <title>Rueda Libre | Alquiler de bicicletas en Medellín</title>
   <link rel="stylesheet" href="./css/tailwind.css">
+  <script>document.documentElement.classList.add("js");</script>
 </head>
 
 <body class="site-body">
@@ -32,7 +33,7 @@
 
   <nav class="main-nav" aria-label="Navegación principal">
     <details class="mobile-menu">
-      <summary class="mobile-menu-button">☰ Menú de navegación</summary>
+      <summary class="mobile-menu-button">Menú de navegación</summary>
       <ul class="mobile-menu-list">
         <li><a href="#inicio">Inicio</a></li>
         <li><a href="#quienes-somos">Quiénes somos</a></li>
@@ -80,9 +81,13 @@
         <p>Explora los nueve modelos disponibles y encuentra el ideal para tu recorrido.</p>
       </div>
 
-      <div class="carousel-shell">
+      <div class="carousel-shell" data-carousel>
 
-        <div class="bike-carousel" aria-label="Carrusel de nueve bicicletas">
+        <button class="carousel-btn carousel-prev" type="button" aria-label="Ver bicicletas anteriores" hidden>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 4 7 12l8 8" /></svg>
+        </button>
+
+        <div class="bike-carousel" role="region" aria-label="Carrusel de nueve bicicletas" tabindex="0">
 
           <article class="bike-card" id="bicicleta-1">
             <div class="bike-image">
@@ -184,6 +189,17 @@
           </article>
 
         </div>
+
+        <button class="carousel-btn carousel-next" type="button" aria-label="Ver más bicicletas" hidden>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 4 8 8-8 8" /></svg>
+        </button>
+
+        <div class="carousel-footer">
+          <p class="carousel-status" aria-live="polite"></p>
+          <div class="carousel-dots"></div>
+          <p class="carousel-hint">Desliza o usa las flechas</p>
+        </div>
+
       </div>
     </section>
 
@@ -343,6 +359,161 @@
   <footer class="site-footer">
     <p>© 2026 Rueda Libre | Medellín, Colombia</p>
   </footer>
+
+  <script>
+    /* ==========================================
+       MENÚ MÓVIL: se cierra al elegir una opción,
+       al tocar fuera o al pulsar Escape
+    ========================================== */
+    (() => {
+      const menu = document.querySelector(".mobile-menu");
+      if (!menu) return;
+
+      menu.addEventListener("click", (e) => {
+        if (e.target.closest("a")) menu.open = false;
+      });
+      document.addEventListener("click", (e) => {
+        if (!menu.contains(e.target)) menu.open = false;
+      });
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") menu.open = false;
+      });
+    })();
+
+    /* ==========================================
+       CARRUSEL: flechas, indicadores y texto de estado.
+       Muestra 3, 2 o 1 bicicletas según el ancho de la pantalla
+       (lo define el CSS) y al llegar al final vuelve al inicio.
+    ========================================== */
+    (() => {
+      const shell = document.querySelector("[data-carousel]");
+      if (!shell) return;
+
+      const track = shell.querySelector(".bike-carousel");
+      const cards = Array.from(track.children);
+      const prevBtn = shell.querySelector(".carousel-prev");
+      const nextBtn = shell.querySelector(".carousel-next");
+      const dotsBox = shell.querySelector(".carousel-dots");
+      const status = shell.querySelector(".carousel-status");
+      const hint = shell.querySelector(".carousel-hint");
+      const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+      let perView = 1;      // bicicletas visibles a la vez
+      let pages = 1;        // cantidad de "grupos"
+      let page = 0;         // grupo actual
+      let pending = null;   // grupo al que se está desplazando
+      let dots = [];
+      let statusTimer;
+      let lockTimer;
+
+      // Índice de la primera bicicleta de un grupo (el último grupo nunca se pasa del final)
+      const firstOfPage = (p) => Math.min(p * perView, cards.length - perView);
+
+      const measure = () => {
+        const styles = getComputedStyle(track);
+        const gap = parseFloat(styles.columnGap) || 0;
+        const padding = parseFloat(styles.paddingLeft) + parseFloat(styles.paddingRight);
+        const cardWidth = cards[0].getBoundingClientRect().width;
+        perView = Math.max(1, Math.round((track.clientWidth - padding + gap) / (cardWidth + gap)));
+        pages = Math.ceil(cards.length / perView);
+      };
+
+      const currentIndex = () => {
+        const step = cards.length > 1 ? cards[1].offsetLeft - cards[0].offsetLeft : track.clientWidth;
+        return Math.round(track.scrollLeft / step);
+      };
+
+      const buildDots = () => {
+        dotsBox.textContent = "";
+        dots = [];
+        for (let p = 0; p < pages; p++) {
+          const first = firstOfPage(p);
+          const last = Math.min(first + perView, cards.length);
+          const dot = document.createElement("button");
+          dot.type = "button";
+          dot.className = "carousel-dot";
+          dot.setAttribute("aria-label",
+            perView === 1 ? `Ver modelo ${first + 1}` : `Ver modelos ${first + 1} a ${last}`);
+          dot.addEventListener("click", () => goTo(p));
+          dotsBox.appendChild(dot);
+          dots.push(dot);
+        }
+      };
+
+      const update = () => {
+        const maxFirst = cards.length - perView;
+        const index = pending !== null ? firstOfPage(pending) : Math.min(currentIndex(), maxFirst);
+        page = pending !== null ? pending : (index >= maxFirst ? pages - 1 : Math.round(index / perView));
+
+        dots.forEach((dot, i) => dot.setAttribute("aria-current", String(i === page)));
+
+        // El texto se actualiza al terminar el movimiento para no "hablar" en cada fotograma
+        clearTimeout(statusTimer);
+        statusTimer = setTimeout(() => {
+          const last = Math.min(index + perView, cards.length);
+          status.textContent = perView === 1
+            ? `Modelo ${index + 1} de ${cards.length}`
+            : `Modelos ${index + 1} a ${last} de ${cards.length}`;
+        }, 120);
+      };
+
+      const goTo = (p, behavior) => {
+        const target = ((p % pages) + pages) % pages;   // da la vuelta al llegar al final o al inicio
+        const card = cards[firstOfPage(target)];
+
+        pending = target;
+        clearTimeout(lockTimer);
+        lockTimer = setTimeout(() => { pending = null; update(); }, 800);
+
+        track.scrollTo({
+          left: card.offsetLeft - cards[0].offsetLeft,
+          behavior: behavior || (reduceMotion.matches ? "auto" : "smooth")
+        });
+        update();
+      };
+
+      const refresh = () => {
+        const firstVisible = currentIndex();
+        const oldPerView = perView;
+        measure();
+
+        const multiple = pages > 1;
+        prevBtn.hidden = nextBtn.hidden = hint.hidden = !multiple;
+
+        if (!dots.length || perView !== oldPerView || dots.length !== pages) buildDots();
+        if (perView !== oldPerView) {
+          goTo(Math.floor(firstVisible / perView), "auto");
+        } else {
+          update();
+        }
+      };
+
+      let ticking = false;
+      track.addEventListener("scroll", () => {
+        if (ticking) return;
+        ticking = true;
+        requestAnimationFrame(() => { ticking = false; update(); });
+      }, { passive: true });
+
+      track.addEventListener("scrollend", () => {
+        clearTimeout(lockTimer);
+        pending = null;
+        update();
+      });
+
+      prevBtn.addEventListener("click", () => goTo(page - 1));
+      nextBtn.addEventListener("click", () => goTo(page + 1));
+
+      track.addEventListener("keydown", (e) => {
+        if (e.target !== track) return;
+        if (e.key === "ArrowRight") { e.preventDefault(); goTo(page + 1); }
+        if (e.key === "ArrowLeft") { e.preventDefault(); goTo(page - 1); }
+      });
+
+      new ResizeObserver(refresh).observe(track);
+      refresh();
+    })();
+  </script>
 
 </body>
 

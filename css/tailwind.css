@@ -160,563 +160,835 @@
   }
 }
 @layer utilities;
-:root {
-  --green: #245c42;
-  --green-dark: #1b3929;
-  --green-hover: #367653;
-  --green-soft: #dce9df;
-  --page: #eef3ee;
-  --ink: #26352b;
-  --white: #ffffff;
-  --muted: #526257;
-  --border: #d5dfd6;
-  --surface: #ffffff;
-  --surface-soft: #f5f7f5;
-  --shadow: 0 8px 24px rgb(22 48 32 / 9%);
-  color-scheme: light;
-}
-* {
-  box-sizing: border-box;
-}
-html {
-  scroll-behavior: smooth;
-  scroll-padding-top: 5.5rem;
-}
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  line-height: 1.6;
-  background: var(--page);
-  color: var(--ink);
-}
-img {
-  display: block;
-  max-width: 100%;
-}
-a {
-  color: inherit;
-}
-button, input, select {
-  font: inherit;
-}
-section[id] {
-  scroll-margin-top: 5.5rem;
-}
-.site-header {
-  background: var(--green);
-  color: var(--white);
-  padding: 1.5rem 1rem;
-}
-.header-inner {
-  width: min(1150px, 100%);
-  margin-inline: auto;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 1rem;
-  position: relative;
-}
-.brand {
-  text-align: center;
-}
-.brand-name {
-  display: block;
-  color: white;
-  text-decoration: none;
-  font-size: clamp(1.7rem, 4vw, 2.5rem);
-  line-height: 1.15;
-  font-weight: 800;
-  letter-spacing: -.04em;
-  text-align: center;
-}
-.brand p {
-  margin: .35rem 0 0;
-  color: #e4eee7;
-  text-align: center;
-}
-.theme-switch {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  clip-path: inset(50%);
-}
-.theme-button {
-  position: absolute;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
-  display: inline-flex;
-  align-items: center;
-  gap: .45rem;
-  padding: .65rem .9rem;
-  border: 1px solid rgb(255 255 255 / 40%);
-  border-radius: 999px;
-  color: white;
-  cursor: pointer;
-  font-weight: 700;
-  white-space: nowrap;
-}
-.theme-button:hover {
-  background: rgb(255 255 255 / 12%);
-}
-.theme-button:focus-visible, .theme-switch:focus-visible+.site-header .theme-button {
-  outline: 3px solid #f5d66b;
-  outline-offset: 3px;
-}
-.theme-night {
-  display: none;
-}
-.main-nav {
-  position: sticky;
-  top: 0;
-  z-index: 20;
-  background: var(--green-dark);
-  box-shadow: 0 3px 10px rgb(0 0 0 / 12%);
-}
-.desktop-menu {
-  width: min(1150px, 100%);
-  margin: 0 auto;
-  padding: 0 1rem;
-  list-style: none;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: .25rem;
-}
-.desktop-menu a, .mobile-menu-list a {
-  display: block;
-  padding: .85rem 1rem;
-  color: white;
-  text-decoration: none;
-  font-weight: 700;
-  transition: background-color .2s ease;
-}
-.desktop-menu a:hover, .desktop-menu a:focus-visible, .mobile-menu-list a:hover, .mobile-menu-list a:focus-visible {
-  background: var(--green-hover);
-  outline-offset: -3px;
-}
-.mobile-menu {
-  display: none;
-}
-.mobile-menu-button {
-  color: white;
-  cursor: pointer;
-  padding: .8rem 1rem;
-  font-weight: 700;
-  list-style: none;
-}
-.mobile-menu-button::-webkit-details-marker {
-  display: none;
-}
-.mobile-menu-list {
-  list-style: none;
-  margin: 0;
-  padding: 0 .5rem .5rem;
-}
-.mobile-menu-list a {
-  padding: .65rem .8rem;
-  border-radius: .4rem;
-}
-.page-container {
-  width: min(1150px, calc(100% - 2rem));
-  margin: 1.5rem auto 2.5rem;
-}
-.content-section {
-  margin: 1.5rem 0;
-  padding: clamp(1.15rem, 3vw, 2.25rem);
-  border: 1px solid rgb(36 92 66 / 8%);
-  border-radius: 1.1rem;
-  background: rgb(255 255 255 / 62%);
-}
-.section-heading {
-  max-width: 760px;
-  margin: 0 auto 1.5rem;
-  text-align: center;
-}
-.eyebrow {
-  display: inline-block;
-  margin-bottom: .45rem;
-  color: var(--green);
-  font-size: .75rem;
-  font-weight: 800;
-  letter-spacing: .12em;
-  text-transform: uppercase;
-}
-.section-heading h1, .section-heading h2 {
-  margin: 0;
-  color: var(--green);
-  font-size: clamp(1.65rem, 4vw, 2.35rem);
-  line-height: 1.2;
-  font-weight: 800;
-}
-.section-heading p {
-  margin: .65rem 0 0;
-  color: var(--muted);
-}
-.about-section>p {
-  max-width: 850px;
-  margin: .8rem auto 0;
-}
-.schedule-note {
-  padding: .85rem 1rem;
-  border-left: 4px solid var(--green);
-  border-radius: .35rem;
-  background: var(--green-soft);
-}
-.carousel-shell {
-  margin-top: 1.5rem;
-}
-.bike-carousel {
-  display: grid;
-  grid-auto-flow: column;
-  grid-auto-columns: calc((100% - 2rem) / 3);
-  gap: 1rem;
-  overflow-x: auto;
-  overflow-y: hidden;
-  overscroll-behavior-inline: contain;
-  padding: .25rem .15rem 1rem;
-  scroll-snap-type: x mandatory;
-  scroll-padding-inline: .15rem;
-  scrollbar-width: none;
-  -ms-overflow-style: none;
-}
-.bike-carousel::-webkit-scrollbar {
-  display: none;
-}
-.bike-card {
-  min-width: 0;
-  overflow: hidden;
-  scroll-snap-align: start;
-  border: 1px solid var(--border);
-  border-radius: .9rem;
-  background: var(--surface);
-  box-shadow: var(--shadow);
-}
-.bike-image {
-  display: grid;
-  place-items: center;
-  min-height: 205px;
-  padding: 1rem;
-  background: var(--surface-soft);
-}
-.bike-image img {
-  width: 100%;
-  height: 190px;
-  object-fit: contain;
-  object-position: center;
-}
-.bike-card-content {
-  padding: 1rem 1.1rem 1.2rem;
-}
-.bike-number {
-  color: var(--green);
-  font-size: .72rem;
-  font-weight: 800;
-  letter-spacing: .1em;
-  text-transform: uppercase;
-}
-.bike-card h3 {
-  margin: .35rem 0 .45rem;
-  color: var(--green);
-  font-size: 1.1rem;
-  line-height: 1.3;
-  font-weight: 800;
-}
-.bike-card p {
-  margin: 0;
-  color: var(--muted);
-  font-size: .93rem;
-}
-.pricing-group {
-  margin-top: 2rem;
-}
-.pricing-heading {
-  margin-bottom: 1rem;
-  text-align: center;
-}
-.pricing-heading h3 {
-  margin: 0;
-  color: var(--green);
-  font-size: 1.4rem;
-  font-weight: 800;
-}
-.pricing-heading p {
-  margin: .25rem 0 0;
-  color: var(--muted);
-}
-.pricing-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 1rem;
-}
-.price-card {
-  height: 100%;
-  padding: 1.35rem;
-  border: 1px solid var(--border);
-  border-radius: .9rem;
-  background: var(--surface);
-  box-shadow: var(--shadow);
-}
-.price-card h4 {
-  margin: 0;
-  color: var(--green);
-  font-size: 1.2rem;
-  font-weight: 800;
-}
-.duration {
-  margin: .2rem 0;
-  color: var(--muted);
-}
-.price {
-  margin: .8rem 0;
-  color: var(--green);
-  font-size: clamp(1.8rem, 4vw, 2.35rem);
-  font-weight: 900;
-  line-height: 1.15;
-}
-.price span {
-  font-size: .8rem;
-  font-weight: 700;
-}
-.extra-hour {
-  margin: 0 0 .9rem;
-  color: var(--muted);
-  font-size: .9rem;
-}
-.price-card ul {
-  margin: 0;
-  padding-left: 1.2rem;
-  color: var(--ink);
-}
-.price-card li {
-  margin: .35rem 0;
-}
-.night-price {
-  border-color: #536a88;
-}
-.night-price h4, .night-price .price {
-  color: #426184;
-}
-.pricing-note {
-  margin: 1.5rem 0 0;
-  color: var(--muted);
-  text-align: center;
-  font-size: .9rem;
-}
-.reservation-disclosure {
-  max-width: 800px;
-  margin: 0 auto;
-}
-.reservation-disclosure>summary {
-  list-style: none;
-}
-.reservation-disclosure>summary::-webkit-details-marker {
-  display: none;
-}
-.primary-button {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: .7rem;
-  width: fit-content;
-  margin: 0 auto;
-  padding: .8rem 1.25rem;
-  border: 0;
-  border-radius: .55rem;
-  background: var(--green);
-  color: white;
-  cursor: pointer;
-  text-decoration: none;
-  font-weight: 800;
-  transition: background-color .2s ease, transform .2s ease;
-}
-.primary-button:hover {
-  background: var(--green-dark);
-  transform: translateY(-1px);
-}
-.reservation-disclosure[open]>summary span {
-  transform: rotate(45deg);
-}
-.reservation-form {
-  margin-top: 1.4rem;
-  padding: clamp(1rem, 3vw, 1.5rem);
-  border: 1px solid var(--border);
-  border-radius: .9rem;
-  background: var(--surface);
-}
-.form-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 1rem;
-}
-.form-field {
-  display: flex;
-  flex-direction: column;
-  gap: .35rem;
-}
-.form-field label {
-  color: var(--ink);
-  font-size: .92rem;
-  font-weight: 700;
-}
-.form-field input, .form-field select {
-  width: 100%;
-  min-height: 46px;
-  padding: .65rem .75rem;
-  border: 1px solid #b9c8bb;
-  border-radius: .45rem;
-  background: white;
-  color: #26352b;
-}
-.form-field input:focus, .form-field select:focus {
-  border-color: var(--green);
-  outline: 3px solid rgb(36 92 66 / 16%);
-}
-.submit-button {
-  margin-top: 1.3rem;
-}
-.form-disclaimer {
-  max-width: 800px;
-  margin: 1rem auto 0;
-  color: var(--muted);
-  font-size: .88rem;
-  text-align: center;
-}
-.site-footer {
-  padding: 1.2rem;
-  background: var(--green-dark);
-  color: white;
-  text-align: center;
-}
-.site-footer p {
-  margin: 0;
-}
-body:has(#theme-toggle:checked) {
-  --page: #121a16;
-  --ink: #e4ebe5;
-  --muted: #b9c9bd;
-  --surface: #202b24;
-  --surface-soft: #17221b;
-  --border: #405347;
-  --green-soft: #243b2d;
-  color-scheme: dark;
-  background: var(--page);
-  color: var(--ink);
-}
-body:has(#theme-toggle:checked) .theme-day {
-  display: none;
-}
-body:has(#theme-toggle:checked) .theme-night {
-  display: inline;
-}
-body:has(#theme-toggle:checked) .content-section {
-  background: #1a251e;
-  border-color: #2c4032;
-}
-body:has(#theme-toggle:checked) .section-heading h1, body:has(#theme-toggle:checked) .section-heading h2, body:has(#theme-toggle:checked) .eyebrow, body:has(#theme-toggle:checked) .bike-card h3, body:has(#theme-toggle:checked) .bike-number, body:has(#theme-toggle:checked) .pricing-heading h3 {
-  color: #75c995;
-}
-body:has(#theme-toggle:checked) .schedule-note {
-  background: #243b2d;
-}
-body:has(#theme-toggle:checked) .price-card {
-  background: var(--surface);
-}
-body:has(#theme-toggle:checked) .price-card h4, body:has(#theme-toggle:checked) .price-card .price {
-  color: #75c995;
-}
-body:has(#theme-toggle:checked) .price-card ul {
-  color: var(--ink);
-}
-body:has(#theme-toggle:checked) .form-field label {
-  color: var(--ink);
-}
-body:has(#theme-toggle:checked) .form-field input, body:has(#theme-toggle:checked) .form-field select {
-  border-color: #526758;
-  background: #202b24;
-  color: white;
-}
-body:has(#theme-toggle:checked) .form-field option {
-  background: #202b24;
-  color: white;
-}
-@media (max-width: 900px) {
-  .bike-carousel {
-    grid-auto-columns: calc((100% - 1rem) / 2);
+
+/* ==========================================
+   RUEDA LIBRE - ESTILOS
+   Todo el CSS propio va dentro de las capas de
+   Tailwind (base < components < utilities), así
+   las utilidades de Tailwind siempre pueden
+   sobrescribirlo cuando las uses en el HTML.
+========================================== */
+
+@layer base {
+
+  /* ----- Colores ----- */
+  :root {
+    --green: #245c42;
+    --green-dark: #1b3929;
+    --green-hover: #367653;
+    --green-soft: #dce9df;
+    --page: #eef3ee;
+    --ink: #26352b;
+    --white: #ffffff;
+    --muted: #526257;
+    --border: #d5dfd6;
+    --surface: #ffffff;
+    --surface-soft: #f5f7f5;
+    --shadow: 0 8px 24px rgb(22 48 32 / 9%);
+
+    /* Colores que cambian en modo noche */
+    --accent: #245c42;
+    --accent-hover: #1b3929;
+    --night: #426184;
+    --night-border: #536a88;
+    --section-bg: rgb(255 255 255 / 62%);
+    --section-border: rgb(36 92 66 / 8%);
+    --field-bg: #ffffff;
+    --field-border: #b9c8bb;
+    --field-text: #26352b;
+
+    color-scheme: light;
+  }
+
+  /* ----- Modo noche (sin JavaScript): solo cambia las variables ----- */
+  body:has(#theme-toggle:checked) {
+    --page: #121a16;
+    --ink: #e4ebe5;
+    --muted: #b9c9bd;
+    --surface: #202b24;
+    --surface-soft: #17221b;
+    --border: #405347;
+    --green-soft: #243b2d;
+
+    --accent: #75c995;
+    --accent-hover: #a6e3bc;
+    --night: #8fb2d9;
+    --night-border: #5f7fa6;
+    --section-bg: #1a251e;
+    --section-border: #2c4032;
+    --field-bg: #202b24;
+    --field-border: #526758;
+    --field-text: #ffffff;
+
+    color-scheme: dark;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    /* Espacio para que el menú fijo no tape los títulos al saltar a una sección */
+    scroll-padding-top: 4.75rem;
+  }
+
+  body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    background: var(--page);
+    color: var(--ink);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
   }
 }
-@media (max-width: 640px) {
+
+@layer components {
+
+  /* ==========================================
+     ENCABEZADO
+  ========================================== */
+
+  .site-header {
+    background: var(--green);
+    color: var(--white);
+    padding: 1.5rem 1rem;
+  }
+
   .header-inner {
-    flex-direction: column;
+    width: min(1150px, 100%);
+    margin-inline: auto;
+    display: flex;
     align-items: center;
-    gap: .8rem;
+    justify-content: center;
+    gap: 1rem;
+    position: relative;
   }
+
   .brand {
-    width: 100%;
+    text-align: center;
   }
+
+  .brand-name {
+    display: block;
+    color: white;
+    text-decoration: none;
+    font-size: clamp(1.7rem, 4vw, 2.5rem);
+    line-height: 1.15;
+    font-weight: 800;
+    letter-spacing: -.04em;
+    text-align: center;
+  }
+
+  .brand p {
+    margin: .35rem 0 0;
+    color: #e4eee7;
+    text-align: center;
+  }
+
+  /* Casilla del modo noche: oculta a la vista, pero accesible con teclado */
+  .theme-switch {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+
   .theme-button {
-    position: static;
-    transform: none;
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    display: inline-flex;
+    align-items: center;
+    gap: .45rem;
+    padding: .65rem .9rem;
+    border: 1px solid rgb(255 255 255 / 40%);
+    border-radius: 999px;
+    color: white;
+    cursor: pointer;
+    font-weight: 700;
+    white-space: nowrap;
   }
-  .desktop-menu {
+
+  .theme-button:hover {
+    background: rgb(255 255 255 / 12%);
+  }
+
+  .theme-button:focus-visible,
+  .theme-switch:focus-visible+.site-header .theme-button {
+    outline: 3px solid #f5d66b;
+    outline-offset: 3px;
+  }
+
+  .theme-night {
     display: none;
   }
-  .mobile-menu {
+
+  body:has(#theme-toggle:checked) .theme-day {
+    display: none;
+  }
+
+  body:has(#theme-toggle:checked) .theme-night {
+    display: inline;
+  }
+
+  /* ==========================================
+     NAVEGACIÓN
+  ========================================== */
+
+  .main-nav {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    background: var(--green-dark);
+    box-shadow: 0 3px 10px rgb(0 0 0 / 12%);
+  }
+
+  .desktop-menu {
+    width: min(1150px, 100%);
+    margin: 0 auto;
+    padding: 0 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: .25rem;
+  }
+
+  .desktop-menu a,
+  .mobile-menu-list a {
     display: block;
+    padding: .85rem 1rem;
+    color: white;
+    text-decoration: none;
+    font-weight: 700;
+    transition: background-color .2s ease;
   }
+
+  .desktop-menu a:hover,
+  .desktop-menu a:focus-visible,
+  .mobile-menu-list a:hover,
+  .mobile-menu-list a:focus-visible {
+    background: var(--green-hover);
+    outline-offset: -3px;
+  }
+
+  /* El menú móvil solo se muestra en pantallas pequeñas */
+  .mobile-menu {
+    display: none;
+  }
+
+  .mobile-menu-button {
+    display: flex;
+    align-items: center;
+    gap: .65rem;
+    padding: .8rem 1rem;
+    color: white;
+    cursor: pointer;
+    font-weight: 700;
+    list-style: none;
+  }
+
+  .mobile-menu-button:focus-visible {
+    outline: 3px solid #f5d66b;
+    outline-offset: -3px;
+  }
+
+  .mobile-menu-button::-webkit-details-marker {
+    display: none;
+  }
+
+  /* Icono: ☰ cerrado, ✕ abierto */
+  .mobile-menu-button::before {
+    content: "☰";
+    font-size: 1.2rem;
+    line-height: 1;
+  }
+
+  .mobile-menu[open] .mobile-menu-button::before {
+    content: "✕";
+  }
+
+  .mobile-menu-list {
+    padding: 0 .5rem .6rem;
+  }
+
+  .mobile-menu-list a {
+    padding: .7rem .8rem;
+    border-radius: .4rem;
+  }
+
+  /* ==========================================
+     CONTENIDO GENERAL
+  ========================================== */
+
   .page-container {
-    width: min(100% - 1rem, 1150px);
-    margin-top: .75rem;
+    width: min(1150px, calc(100% - 2rem));
+    margin: 1.5rem auto 2.5rem;
   }
+
   .content-section {
-    margin: .85rem 0;
-    padding: 1rem;
-    border-radius: .8rem;
+    margin: 1.5rem 0;
+    padding: clamp(1.15rem, 3vw, 2.25rem);
+    border: 1px solid var(--section-border);
+    border-radius: 1.1rem;
+    background: var(--section-bg);
   }
+
+  .section-heading {
+    max-width: 760px;
+    margin: 0 auto 1.5rem;
+    text-align: center;
+  }
+
+  .eyebrow {
+    display: inline-block;
+    margin-bottom: .45rem;
+    color: var(--accent);
+    font-size: .75rem;
+    font-weight: 800;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+  }
+
+  .section-heading h1,
+  .section-heading h2 {
+    color: var(--accent);
+    font-size: clamp(1.65rem, 4vw, 2.35rem);
+    line-height: 1.2;
+    font-weight: 800;
+  }
+
+  .section-heading p {
+    margin: .65rem 0 0;
+    color: var(--muted);
+  }
+
+  .about-section>p {
+    max-width: 850px;
+    margin: .8rem auto 0;
+  }
+
+  .schedule-note {
+    padding: .85rem 1rem;
+    border-left: 4px solid var(--accent);
+    border-radius: .35rem;
+    background: var(--green-soft);
+  }
+
+  /* ==========================================
+     CARRUSEL DE BICICLETAS
+  ========================================== */
+
+  /* Computador: [flecha] [bicicletas] [flecha]
+                 [      indicadores y texto     ] */
+  .carousel-shell {
+    margin-top: 1.5rem;
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    grid-template-areas:
+      "prev track next"
+      ".    footer .";
+    align-items: center;
+    column-gap: .35rem;
+  }
+
   .bike-carousel {
-    grid-auto-columns: 100%;
-    gap: .75rem;
-    padding: .25rem 0 .5rem;
+    grid-area: track;
+    position: relative;
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: calc((100% - 2rem) / 3);
+    gap: 1rem;
+    overflow-x: auto;
+    overflow-y: hidden;
+    overscroll-behavior-inline: contain;
+    padding: .25rem .15rem 1rem;
     scroll-snap-type: x mandatory;
+    scroll-padding-inline: .15rem;
   }
+
+  .bike-carousel:focus-visible {
+    outline: 3px solid var(--accent);
+    outline-offset: 2px;
+    border-radius: .5rem;
+  }
+
+  /* Con JavaScript se ocultan las barras (hay flechas y puntos);
+     sin JavaScript se deja una barra fina para poder desplazarse. */
+  .js .bike-carousel {
+    scrollbar-width: none;
+  }
+
+  .js .bike-carousel::-webkit-scrollbar {
+    display: none;
+  }
+
+  html:not(.js) .bike-carousel {
+    scrollbar-width: thin;
+  }
+
   .bike-card {
-    width: 100%;
-    scroll-snap-align: center;
+    min-width: 0;
+    overflow: hidden;
+    scroll-snap-align: start;
+    border: 1px solid var(--border);
+    border-radius: .9rem;
+    background: var(--surface);
+    box-shadow: var(--shadow);
   }
+
   .bike-image {
-    min-height: 230px;
-    padding: 1.2rem;
+    display: grid;
+    place-items: center;
+    min-height: 205px;
+    padding: 1rem;
+    background: var(--surface-soft);
   }
+
   .bike-image img {
     width: 100%;
-    height: 220px;
+    height: 190px;
     object-fit: contain;
+    object-position: center;
   }
+
   .bike-card-content {
-    padding: 1.2rem;
+    padding: 1rem 1.1rem 1.2rem;
   }
+
+  .bike-number {
+    color: var(--accent);
+    font-size: .72rem;
+    font-weight: 800;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+  }
+
   .bike-card h3 {
-    font-size: 1.2rem;
+    margin: .35rem 0 .45rem;
+    color: var(--accent);
+    font-size: 1.1rem;
+    line-height: 1.3;
+    font-weight: 800;
   }
+
   .bike-card p {
-    font-size: .95rem;
+    color: var(--muted);
+    font-size: .93rem;
   }
-  .pricing-grid, .form-grid {
-    grid-template-columns: 1fr;
+
+  /* Flechas: solo el símbolo, sin círculo */
+  .carousel-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.75rem;
+    height: 2.75rem;
+    color: var(--accent);
+    cursor: pointer;
+    border-radius: .5rem;
+    transition: color .2s ease, transform .2s ease;
   }
+
+  .carousel-prev {
+    grid-area: prev;
+  }
+
+  .carousel-next {
+    grid-area: next;
+  }
+
+  .carousel-btn svg {
+    width: 2rem;
+    height: 2rem;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 3;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  .carousel-btn:hover {
+    color: var(--accent-hover);
+    transform: scale(1.12);
+  }
+
+  .carousel-btn:focus-visible {
+    outline: 3px solid var(--accent);
+    outline-offset: 2px;
+  }
+
+  .carousel-footer {
+    grid-area: footer;
+    text-align: center;
+  }
+
+  .carousel-status {
+    margin: .2rem 0 .5rem;
+    color: var(--ink);
+    font-size: .9rem;
+    font-weight: 700;
+  }
+
+  .carousel-dots {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: .55rem;
+  }
+
+  .carousel-dot {
+    position: relative;
+    width: .8rem;
+    height: .8rem;
+    border: 2px solid var(--accent);
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color .2s ease;
+  }
+
+  /* Área de toque más grande que el punto visible */
+  .carousel-dot::after {
+    content: "";
+    position: absolute;
+    inset: -.6rem -.2rem;
+  }
+
+  .carousel-dot[aria-current="true"] {
+    background: var(--accent);
+  }
+
+  .carousel-hint {
+    display: none;
+    margin-top: .35rem;
+    color: var(--muted);
+    font-size: .8rem;
+  }
+
+  .js .carousel-hint {
+    display: block;
+  }
+
+  /* ==========================================
+     TARIFAS
+  ========================================== */
+
+  .pricing-group {
+    margin-top: 2rem;
+  }
+
+  .pricing-heading {
+    margin-bottom: 1rem;
+    text-align: center;
+  }
+
+  .pricing-heading h3 {
+    color: var(--accent);
+    font-size: 1.4rem;
+    font-weight: 800;
+  }
+
+  .pricing-heading p {
+    margin: .25rem 0 0;
+    color: var(--muted);
+  }
+
+  .pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+  }
+
   .price-card {
-    padding: 1.1rem;
+    height: 100%;
+    padding: 1.35rem;
+    border: 1px solid var(--border);
+    border-radius: .9rem;
+    background: var(--surface);
+    box-shadow: var(--shadow);
   }
-}
-@media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto;
+
+  .price-card h4 {
+    color: var(--accent);
+    font-size: 1.2rem;
+    font-weight: 800;
   }
-  *, *::before, *::after {
-    transition-duration: .01ms !important;
+
+  .duration {
+    margin: .2rem 0;
+    color: var(--muted);
+  }
+
+  .price {
+    margin: .8rem 0;
+    color: var(--accent);
+    font-size: clamp(1.8rem, 4vw, 2.35rem);
+    font-weight: 900;
+    line-height: 1.15;
+  }
+
+  .price span {
+    font-size: .8rem;
+    font-weight: 700;
+  }
+
+  .extra-hour {
+    margin: 0 0 .9rem;
+    color: var(--muted);
+    font-size: .9rem;
+  }
+
+  /* Tailwind quita las viñetas de las listas; aquí se devuelven */
+  .price-card ul {
+    padding-left: 1.2rem;
+    list-style: disc;
+    color: var(--ink);
+  }
+
+  .price-card li {
+    margin: .35rem 0;
+  }
+
+  .night-price {
+    border-color: var(--night-border);
+  }
+
+  .night-price h4,
+  .night-price .price {
+    color: var(--night);
+  }
+
+  .pricing-note {
+    margin: 1.5rem 0 0;
+    color: var(--muted);
+    text-align: center;
+    font-size: .9rem;
+  }
+
+  /* ==========================================
+     FORMULARIO DE RESERVA
+  ========================================== */
+
+  .reservation-disclosure {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .reservation-disclosure>summary {
+    list-style: none;
+  }
+
+  .reservation-disclosure>summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .primary-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: .7rem;
+    width: fit-content;
+    margin: 0 auto;
+    padding: .8rem 1.25rem;
+    border-radius: .55rem;
+    background: var(--green);
+    color: white;
+    cursor: pointer;
+    text-decoration: none;
+    font-weight: 800;
+    transition: background-color .2s ease, transform .2s ease;
+  }
+
+  .primary-button:hover {
+    background: var(--green-dark);
+    transform: translateY(-1px);
+  }
+
+  .primary-button:focus-visible {
+    outline: 3px solid #f5d66b;
+    outline-offset: 3px;
+  }
+
+  .reservation-disclosure[open]>summary span {
+    transform: rotate(45deg);
+  }
+
+  .reservation-form {
+    margin-top: 1.4rem;
+    padding: clamp(1rem, 3vw, 1.5rem);
+    border: 1px solid var(--border);
+    border-radius: .9rem;
+    background: var(--surface);
+  }
+
+  .form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+  }
+
+  .form-field {
+    display: flex;
+    flex-direction: column;
+    gap: .35rem;
+  }
+
+  .form-field label {
+    color: var(--ink);
+    font-size: .92rem;
+    font-weight: 700;
+  }
+
+  .form-field input,
+  .form-field select {
+    width: 100%;
+    min-height: 46px;
+    padding: .65rem .75rem;
+    border: 1px solid var(--field-border);
+    border-radius: .45rem;
+    background: var(--field-bg);
+    color: var(--field-text);
+  }
+
+  .form-field option {
+    background: var(--field-bg);
+    color: var(--field-text);
+  }
+
+  .form-field input:focus,
+  .form-field select:focus {
+    border-color: var(--accent);
+    outline: 3px solid rgb(36 92 66 / 16%);
+  }
+
+  .submit-button {
+    margin-top: 1.3rem;
+  }
+
+  .form-disclaimer {
+    max-width: 800px;
+    margin: 1rem auto 0;
+    color: var(--muted);
+    font-size: .88rem;
+    text-align: center;
+  }
+
+  /* ==========================================
+     PIE DE PÁGINA
+  ========================================== */
+
+  .site-footer {
+    padding: 1.2rem;
+    background: var(--green-dark);
+    color: white;
+    text-align: center;
+  }
+
+  /* ==========================================
+     TABLETAS (hasta 900px): 2 bicicletas por vista
+  ========================================== */
+
+  @media (max-width: 900px) {
+    .bike-carousel {
+      grid-auto-columns: calc((100% - 1rem) / 2);
+    }
+  }
+
+  /* ==========================================
+     CELULARES (hasta 640px): 1 bicicleta por vista
+  ========================================== */
+
+  @media (max-width: 640px) {
+
+    .header-inner {
+      flex-direction: column;
+      gap: .8rem;
+    }
+
+    .brand {
+      width: 100%;
+    }
+
+    .theme-button {
+      position: static;
+      transform: none;
+    }
+
+    .desktop-menu {
+      display: none;
+    }
+
+    .mobile-menu {
+      display: block;
+    }
+
+    .page-container {
+      width: min(100% - 1rem, 1150px);
+      margin-top: .75rem;
+    }
+
+    .content-section {
+      margin: .85rem 0;
+      padding: 1rem;
+      border-radius: .8rem;
+    }
+
+    /* Celular: bicicleta arriba; flechas a los lados de los indicadores */
+    .carousel-shell {
+      grid-template-areas:
+        "track track track"
+        "prev  footer next";
+      row-gap: .25rem;
+    }
+
+    .bike-carousel {
+      grid-auto-columns: 100%;
+      gap: .75rem;
+      padding: .25rem 0 .5rem;
+      scroll-padding-inline: 0;
+    }
+
+    .bike-image {
+      min-height: 230px;
+      padding: 1.2rem;
+    }
+
+    .bike-image img {
+      height: 220px;
+    }
+
+    .bike-card-content {
+      padding: 1.2rem;
+    }
+
+    .bike-card h3 {
+      font-size: 1.2rem;
+    }
+
+    .bike-card p {
+      font-size: .95rem;
+    }
+
+    .pricing-grid,
+    .form-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .price-card {
+      padding: 1.1rem;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+      transition-duration: .01ms !important;
+    }
   }
 }
