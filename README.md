@@ -1,10 +1,18 @@
-Este es el proyecto de rueda-libre pero incorporando el tailwind para el estilo grafico, fue creada con la intención de ser comparada
-con la otra versión que posee el bootstrap. La disposicion de la pagina es practicamente la misma que la que posee bootstrap, pero al
-ser tailwind una herramienta mas enfocada en estilo y que no incluye comandos tipo javascript como el otro hizo que crearla fuera un reto
-diferente, si se comparan ambas se puede ver que aunque poseen una disposición similar como ya mencione, sus estilos difieren, en esta las 
-secciones estan divididas por recuadros y se podría decir que se siente mas "limpio" y organizado, algunos textos estan dentro de recuadros 
-con colores que los resalten y se sienta una disposición mas organizada, pero la mayor diferencia es que como el tailwind no posee las mismas
-capacidades de asi como trae estilos traer comandos como el bootstrap mucho de el funcionamiento se debe colocar en el mismo html haciendo que
-el código quede mas robusto la mayor diferencia se noto cuando se hizo el carusel puesto a que a diferencia del bootstrap no trae el comando
-para que funcione resulto en tener que agregar mas codigo para que este pudiera no solo funcionar sino que el diseño tuviera coherencia con
-el mismo, la verdad te hace comprender que papel tiene cada sección de un código de programación.
+Descripción del Proyecto: Rueda Libre (Implementación con Tailwind)
+Enfoque y Estructura General:
+
+* Esta versión de Rueda Libre fue creada con la intención de ser comparada con la versión que posee Bootstrap. 
+* La disposición general de la página es prácticamente la misma que la del proyecto anterior. Sin embargo, al ser Tailwind una herramienta más enfocada en el diseño visual y los estilos puros —y al no incluir componentes con comandos de tipo JavaScript integrados como lo hace Bootstrap—, su desarrollo representó un reto completamente diferente. 
+* Visualmente, las secciones se sienten más "limpias" y organizadas: están divididas por recuadros delimitados, y algunos textos importantes se encuentran dentro de contenedores con colores de fondo y bordes que los resaltan, logrando una disposición estética muy cuidada. 
+Desglose de Componentes y Estructura Específica:
+
+* Encabezado (header): Cuenta con una barra superior que contiene el nombre del proyecto (Rueda Libre), su subtítulo y, en la esquina, el selector de modo nocturno. A diferencia de Bootstrap, el cambio de tema en esta versión se maneja de forma innovadora mediante una casilla de verificación oculta (input type="checkbox" id="theme-toggle") combinada con selectores de estado en CSS (body:has(#theme-toggle:checked)), permitiendo alternar entre los modos día y noche sin depender de scripts complejos. 
+* Menú de Navegación (nav): Utiliza un menú adaptable y estructurado mediante la etiqueta <details> y <summary> para dispositivos móviles (desplegándose como una lista limpia al pulsar), mientras que en pantallas de escritorio se muestra como una barra horizontal fija (sticky) centrada, con enlaces de desplazamiento suave. 
+* Sección Quiénes Somos: Presenta el contenido informativo de la iniciativa y los horarios en un bloque independiente con bordes redondeados y sombreados suaves. Destaca la inclusión de una nota de horarios (schedule-note) realzada con un borde lateral izquierdo acentuado. 
+* Catálogo de Bicicletas (Carrusel Personalizado): Es uno de los puntos de mayor diferencia técnica. A diferencia de Bootstrap (que trae el carrusel completamente automatizado por sus clases y scripts internos), Tailwind requiere construir la lógica visual y de funcionamiento desde cero. Utiliza una cuadrícula (grid), tarjetas de bicicletas (bike-card) con imágenes optimizadas, flechas de navegación laterales minimalistas y un sistema de puntos indicadores (carousel-dots) que se gestionan mediante un script de JavaScript propio para lograr el desplazamiento fluido y el ajuste automático según el ancho de pantalla (1, 2 o 3 bicicletas por vista). 
+* Tarifas Diurnas y Nocturnas: Organizadas en bloques diferenciados por grupos de precios. Las tarjetas de tarifa (price-card) muestran los costos en grande, las horas adicionales y las listas de condiciones con viñetas personalizadas, diferenciando visualmente las opciones diurnas de las nocturnas mediante variaciones de color en sus bordes y títulos. 
+* Formulario de Reserva: Implementado dentro de un elemento desplegable (details), al presionarlo se despliega una cuadrícula de campos (inputs y selects para nombre, correo, documento, celular, modelo de bicicleta y fecha). Cuenta con estilos personalizados para los estados de enfoque (focus) y el botón de envío, acompañado al final por la nota aclaratoria sobre la necesidad de un backend. 
+Retos de Desarrollo y Reflexión Personal:
+
+* La mayor diferencia radica en que, como Tailwind no provee componentes interactivos predefinidos con lógica interna (como los que trae Bootstrap), gran parte del comportamiento del carrusel y la interactividad debió estructurarse de forma manual en el HTML y con JavaScript dedicado. 
+* Este proceso hace comprender profundamente el papel que cumple cada sección dentro de un código de programación, demostrando cómo una herramienta enfocada puramente en utilidades de estilo te otorga un control total sobre el diseño y la arquitectura del código.
