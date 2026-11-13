@@ -4,6 +4,7 @@ Enfoque y Estructura General:
 * Esta versión de Rueda Libre fue creada con la intención de ser comparada con la versión que posee Bootstrap. 
 * La disposición general de la página es prácticamente la misma que la del proyecto anterior. Sin embargo, al ser Tailwind una herramienta más enfocada en el diseño visual y los estilos puros —y al no incluir componentes con comandos de tipo JavaScript integrados como lo hace Bootstrap—, su desarrollo representó un reto completamente diferente. 
 * Visualmente, las secciones se sienten más "limpias" y organizadas: están divididas por recuadros delimitados, y algunos textos importantes se encuentran dentro de contenedores con colores de fondo y bordes que los resaltan, logrando una disposición estética muy cuidada. 
+
 Desglose de Componentes y Estructura Específica:
 
 * Encabezado (header): Cuenta con una barra superior que contiene el nombre del proyecto (Rueda Libre), su subtítulo y, en la esquina, el selector de modo nocturno. A diferencia de Bootstrap, el cambio de tema en esta versión se maneja de forma innovadora mediante una casilla de verificación oculta (input type="checkbox" id="theme-toggle") combinada con selectores de estado en CSS (body:has(#theme-toggle:checked)), permitiendo alternar entre los modos día y noche sin depender de scripts complejos. 
